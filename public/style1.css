@@ -1,0 +1,70 @@
+
+body {
+    background-image: url(n1.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+        
+        .form-container{
+            width: 400px;
+            height: 450px;
+            background: lightblue;
+            margin: auto;
+            margin-top: 5%;
+        }
+        #login{
+            margin: auto;
+            margin-left: 25%;
+            margin-top: 20%;
+            position: relative;
+            top: 5%;
+        }
+        #regiform{
+            position: relative;
+            top: 10%;
+        }
+        .form-group{
+            width: 10%;
+            height: 10%;
+            
+        }
+        .lname{
+            position: relative;
+            left: 30%;
+        }
+        .nep{
+            position: relative;
+            left: 200%;
+            width: 300px;
+            height: 30px;
+            top: -20px;
+
+        }
+        .submit-btn{
+            width: 30%;
+            height: 50px;
+            margin: auto;
+            position: relative;
+            left: 120px;
+            background-color: lightpink;
+
+        }
+        .submit-btn:hover{
+            color: #ff5733; 
+        }
+
+        .forgot{
+            position: relative;
+            top: 60px;
+            left: -20px;
+            font-size: 20px;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+    }
+
+        .form-group.error input {
+            border-color: red;
+    }
+

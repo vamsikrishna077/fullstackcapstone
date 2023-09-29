@@ -1,0 +1,131 @@
+body {
+    background-image: url(n1.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+/* Style the navigation bar */
+.navbar {
+    background-color: #f0f0f0;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #ff5733; 
+}
+
+header{
+    text-align: center;
+    padding: 2px;
+    background-color: #333;
+    color: #fff;
+}
+.entry{
+    text-align: center;
+    padding: 50px;
+}
+.entry .input-container{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.input-container .label1{
+    font-size: 30px;
+    font-style:inherit;
+}
+.input-container #item{
+    display: block;
+    margin: 10px;
+    width: 100%;
+    height: 20px;
+}
+
+.input-container #submit {
+    
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    width: 200px;
+    height: auto;
+    align-items: center;
+    margin: 10px 20px;
+    
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .text-center{
+    text-align: center;
+    
+
+  }
+  .nutrition-card {
+    background-color: #f0f0f0;
+    border: 1px solid #0f4bfb;
+    padding: 100px;
+    margin: 20px;
+    box-shadow: 9px 0px 10px rgba(66, 0, 98, 0.2);
+}
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3384FF;
+}
+
+.card-text {
+    font-size: 22px;
+    color: #FF5733;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    
+}
+#foodItem{
+    background-color: antiquewhite;
+    border: solid 2px black;
+    border-radius: 5%;
+}

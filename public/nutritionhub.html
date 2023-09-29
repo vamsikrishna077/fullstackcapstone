@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Hub</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="HEALTHHUB.html">NUTRITION HUB</a>
+            </div>
+            <ul class="menu">
+                <li><a href="HEALTHHUB.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT US</a></li>
+                <a href="/logout" class="logout-btn" id="logoutButton">LOGOUT</a>
+            </ul>
+        </div>
+    </nav>
+    <header>
+        <h1>Nutrition Hub</h1>
+        <p>Know the nutrition of your intake!...</p>
+    </header>
+
+    <section class="entry">
+        <div class="input-container">
+
+            
+            <label class="label1" for="foodItem">Enter the Food item:</label>
+            <input type="text" id="foodItem" name="foodItem" placeholder="Enter the food name" required>
+            <center><button id="submit">Get Nutrition</button></center>
+        
+        </div>
+    </section>
+    <div>
+        <h1 id="nutritionTitle" class="text-center">Nutrition Details for <span id="foodName"></span></h1>
+    </div>
+
+    <div class="row">
+        <!-- First card container -->
+        <div class="col-md-4">
+            <div class="nutrition-card">
+                <h2 class="card-title">Food Name    : <span class="card-text" id="foodNameDisplay"></span></h2>
+                <h2 class="card-title">Calories     : <span class="card-text" id="calories"></span></h2>
+                <h2 class="card-title">Protein      : <span class="card-text" id="protein_g"></span>g</h2>
+                <h2 class="card-title">Carbohydrates: <span class="card-text" id="carbohydrates"></span>g</h2>
+            </div>
+            
+                                
+                        
+                    
+        </div>
+
+        <!-- Second card container -->
+        <div class="col-md-4">
+            <div class="nutrition-card">
+               
+                <h2 class="card-title">Sodium       : <span class="card-text" id="sodium_mg"></span>mg</h2>
+                <h2 class="card-title">Potassium    : <span class="card-text" id="potassium_mg"></span>mg</h2>
+                <h2 class="card-title">Cholesterol  : <span class="card-text" id="cholesterol_total_g"></span>g</h2>
+                <h2 class="card-title">Sugar        : <span class="card-text" id="sugar_g"></span>g</h2>
+            </div>
+        </div>
+
+        <!-- Third card container -->
+        <div class="col-md-4">
+            <div class="nutrition-card">
+                
+                <h2 class="card-title">Total Fat    :<span class="card-text" id="fat_total_g"></span>g</h2>
+                <h2 class="card-title">Saturated_Fat:<span class="card-text" id="fat_saturated_g"></span>g</h2>
+                <h2 class="card-title">Fiber        :<span class="card-text" id="fiber_g"></span>g</h2>
+                <h2 class="card-title">Serving_Size :<span class="card-text" id="serving_size_g"></span>g</h2>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        const logoutButton = document.getElementById('logoutButton');
+  logoutButton.addEventListener('click', () => {
+    firebase.auth().signOut().then(() => {
+      // Sign-out successful.
+      window.location.replace('/login.html'); // Redirect to the login page after logout
+    }).catch((error) => {
+      // An error happened.
+      console.error('Logout error:', error);
+    });
+  });
+
+
+
+   document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('#submit');
+    const foodNameElement = document.getElementById('foodNameDisplay');
+    const foodName=document.getElementById("foodName");
+    form.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const foodItem = document.getElementById('foodItem').value;
+        const apiKey = 'uhACa+F9snkvPkB9+/f3sw==j74Wotu99F636d8U'; 
+        const apiUrl = `https://api.api-ninjas.com/v1/nutrition?query=${foodItem}`;
+
+        fetch(apiUrl, {
+            headers: {
+                'X-Api-Key': apiKey
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (Array.isArray(data) && data.length > 0) {
+                
+                    const firstFoodItem = data[0];
+                    const name = `${firstFoodItem.name}`;
+                    const calories = `${firstFoodItem.calories}`;
+                    const protein_g = `${firstFoodItem.protein_g}`;
+                    const carbohydrates = `${firstFoodItem.carbohydrates_total_g}`;
+                    const sodium_mg = `${firstFoodItem.sodium_mg}`;
+                    const potassium_mg = `${firstFoodItem.potassium_mg}`;
+                    const cholesterol_total_g = `${firstFoodItem.cholesterol_mg}`;
+                    const sugar_g = `${firstFoodItem.sugar_g}`;
+                    const fat_total_g = `${firstFoodItem.fat_total_g}`;
+                    const fat_saturated_g = `${firstFoodItem.fat_saturated_g}`;
+                    const fiber_g = `${firstFoodItem.fiber_g}`;
+                    const serving_size_g = `${firstFoodItem.serving_size_g}`;
+
+                    
+                    foodName.textContent=name;
+                    foodNameElement.textContent = name;
+                    document.getElementById('calories').textContent = calories;
+                    document.getElementById('protein_g').textContent = protein_g;
+                    document.getElementById('carbohydrates').textContent = carbohydrates;
+                    document.getElementById('sodium_mg').textContent = sodium_mg;
+                    document.getElementById('potassium_mg').textContent = potassium_mg;
+                    document.getElementById('cholesterol_total_g').textContent = cholesterol_total_g;
+                    document.getElementById('sugar_g').textContent = sugar_g;
+                    document.getElementById('fat_total_g').textContent = fat_total_g;
+                    document.getElementById('fat_saturated_g').textContent = fat_saturated_g;
+                    document.getElementById('fiber_g').textContent = fiber_g;
+                    document.getElementById('serving_size_g').textContent = serving_size_g;
+
+                    
+
+
+
+
+                } else {
+                    alert(`Food not found: ${foodItem}`);
+                    foodNameElement.textContent = '';
+                    // Clear nutrition details
+                    document.getElementById('calories').textContent = '';
+                    document.getElementById('protein_g').textContent = '';
+                    document.getElementById('carbohydrates').textContent = '';
+                    document.getElementById('sodium_mg').textContent = '';
+                    document.getElementById('potassium_mg').textContent = '';
+                    document.getElementById('cholesterol_total_g').textContent = '';
+                    document.getElementById('sugar_g').textContent = '';
+                    document.getElementById('fat_total_g').textContent = '';
+                    document.getElementById('fat_saturated_g').textContent = '';
+                    document.getElementById('fiber_g').textContent = '';
+                    document.getElementById('serving_size_g').textContent = '';
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+            
+
+        document.getElementById('foodItem').value = ''; 
+    });
+});
+</script>
+</body>
+
+<center><footer>COPYRIGHTS &copy; NUTRITION HUB</footer></center>
+
+</html>

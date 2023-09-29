@@ -1,0 +1,92 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head><title><h1>REGISTRATION FORM</h1></title></head>
+    <link rel="stylesheet" href="style1.css">
+    
+    <body>
+        <div class="form-container">
+            <h1 id="login">SIGNUP FORM</h1>
+            <form method="POST" action="/signupsubmit" id="regiform" onsubmit="return validateform()">
+                <div class="form-group">
+                    <label for="firstname" class="lname">NAME:</label>
+                    <input class="nep" type="text" id="firstname" name="firstname" placeholder="Enter Your Name...">
+                    <span id="nameError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="lname">EmailID:</label>
+                    <input class="nep" type="email" id="email" name="email" required placeholder="Enter the email..">
+                    <span id="emailError" class="error-message"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="lname">Password:</label>
+                    <input class="nep" type="password" id="password" name="password" required placeholder="Enter the password..">
+                    <span id="passwordError" class="error-message"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="confirm-password" class="lname">Confirm Password</label>
+                    <input  class="nep" type="password" id="confirm-password" name="confirmpassword" required placeholder="Enter the password..">
+                    <span id="confirm-password-error" class="error-message"></span>
+                  </div>
+                  <button type="submit" class="submit-btn">Submit</button>
+                  
+            </form>
+            <script>
+                function validateform() {
+                  const nameInput = document.getElementById('firstname');
+                  const emailInput = document.getElementById('email');
+                  const passwordInput = document.getElementById('password');
+                  const confirmPasswordInput = document.getElementById('confirm-password');
+              
+                  const nameError = document.getElementById('nameError');
+                  const emailError = document.getElementById('emailError');
+                  const passwordError = document.getElementById('passwordError');
+                  const confirmPasswordError = document.getElementById('confirm-password-Error');
+              
+                  let isValid = true;
+              
+                  if (nameInput.value.trim() === '') {
+                    alert("please enter the name");
+                    isValid = false;
+                  } else {
+                    nameError.textContent = '';
+                    nameInput.parentElement.classList.remove('error');
+                  }
+              
+                  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                  if (!emailPattern.test(emailInput.value)) {
+                    alert("invalid email");
+                    isValid = false;
+                  } else {
+                    emailError.textContent = '';
+                    emailInput.parentElement.classList.remove('error');
+                  }
+              
+                  if (passwordInput.value.length < 6) {
+                    alert("invalid password");
+                    passwordError.textContent = 'Password must be at least 6 characters long';
+                    passwordInput.parentElement.classList.add('error');
+                    isValid = false;
+                  } else {
+                    passwordError.textContent = '';
+                    passwordInput.parentElement.classList.remove('error');
+                  }
+              
+                  if (confirmPasswordInput.value !== passwordInput.value) {
+                    alert("passwords do not match");
+                    confirmPasswordError.textContent = 'Passwords do not match';
+                    confirmPasswordInput.parentElement.classList.add('error');
+                    isValid = false;
+                  } else {
+                    confirmPasswordError.textContent = '';
+                    confirmPasswordInput.parentElement.classList.remove('error');
+                  }
+              
+                  return isValid;
+                }
+              </script>
+              
+        </div>
+    </body>
+  </html>
